@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Add Bill{% endblock %}
+{% block body %}
+<h3>Add Bill</h3>
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Bill Number</label>
+        <input class="form-control" name="bill_number" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Patient Name</label>
+        <input class="form-control" name="patient_name" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Patient Email</label>
+        <input class="form-control" name="patient_email" type="email" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Amount</label>
+        <input class="form-control" name="amount" required placeholder="e.g., 1200.50">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description (optional)</label>
+        <textarea class="form-control" name="description"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a class="btn btn-secondary" href="{{ url_for('bills') }}">Cancel</a>
+</form>
+{% endblock %}

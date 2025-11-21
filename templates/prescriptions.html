@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Prescriptions{% endblock %}
+{% block body %}
+<h3>Prescriptions</h3>
+<div class="mb-3">
+    <a class="btn btn-success" href="{{ url_for('add_prescription') }}">Add Prescription</a>
+    <a class="btn btn-secondary" href="{{ url_for('dashboard') }}">Back</a>
+</div>
+
+{% if prescriptions %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rx #</th>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Medicines</th>
+            <th>Issued</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in prescriptions %}
+        <tr>
+            <td>{{ p.prescription_number }}</td>
+            <td>{{ p.patient_name }}<br><small>{{ p.patient_email }}</small></td>
+            <td>{{ p.doctor }}</td>
+            <td>
+                <pre style="white-space:pre-wrap;">{{ p.medicines }}</pre>
+            </td>
+            <td>{{ p.issued_date.strftime("%Y-%m-%d %H:%M") }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No prescriptions yet.</p>
+{% endif %}
+{% endblock %}
